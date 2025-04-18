@@ -1,0 +1,9 @@
+[submodule "be/uni-news-be"]
+	path = be/uni-news-be
+	url = https://github.com/LingHangStudio/uni-news-be.git
+[submodule "fe/uni-news-fe"]
+	path = fe/uni-news-fe
+	url = https://github.com/LingHangStudio/uni-news-fe.git
+[submodule "spider/uni-news-spider"]
+	path = spider/uni-news-spider
+	url = https://github.com/LingHangStudio/uni-news-spider.git

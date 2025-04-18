@@ -1,0 +1,40 @@
+services:
+  fe:
+    restart: always
+    build: ./fe
+    tty: true
+    ports:
+      - '7749:80'
+    volumes:
+      - ./config/fe/.env:/opt/fe/uni-news-fe/.env
+      - ./config/fe/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./config/fe/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - be
+  be:
+    restart: always
+    build: ./be
+    tty: true
+    volumes:
+      - ./config/database:/opt/be/uni-news-be/config/database
+      - ./config/content:/opt/be/uni-news-be/config/content
+    depends_on:
+      - spider
+  spider:
+    restart: always
+    build: ./spider
+    tty: true
+    volumes:
+      - ./config/database:/opt/spider/uni-news-spider/config/database
+      - ./config/spiders:/opt/spider/uni-news-spider/config/spiders
+    depends_on:
+      - postgres
+  postgres:
+    restart: always
+    image: postgres:16.8
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+volumes:
+  postgres_volume:
