@@ -31,10 +31,8 @@ services:
       - postgres
   postgres:
     restart: always
-    image: postgres:16.8
+    image: postgres:16
     environment:
       POSTGRES_PASSWORD: 'postgres'
     volumes:
-      - postgres_volume:/var/lib/postgresql/data
-volumes:
-  postgres_volume:
+      - ./docker_volumes/postgres:/var/lib/postgresql

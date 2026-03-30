@@ -6,5 +6,6 @@ cd $BASEDIR
 
 cp ../.env ./.env
 
-npm install
+npm config set registry https://mirrors.huaweicloud.com/repository/npm/
+npm install --verbose --legacy-peer-deps
 npm run build
